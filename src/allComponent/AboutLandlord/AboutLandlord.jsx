@@ -5,12 +5,13 @@ import marker from '../../assets/image/marker.png';
 import checkMark from '../../assets/image/check-mark.png';
 import tenentProfile from '../../assets/image/tenent-profile.png';
 import star from '../../assets/image/star-filled.png';
-import listingImage from '../../assets/image/listing-img.png';
-import favoriteIcon from '../../assets/image/favorite.png';
-import bedIcon from '../../assets/image/Bed.png';
-import bathroomIcon from '../../assets/image/Bath.png';
-import squareMeterIcon from '../../assets/image/Square-Meters.png';
+// import listingImage from '../../assets/image/listing-img.png';
+// import favoriteIcon from '../../assets/image/favorite.png';
+// import bedIcon from '../../assets/image/Bed.png';
+// import bathroomIcon from '../../assets/image/Bath.png';
+// import squareMeterIcon from '../../assets/image/Square-Meters.png';
 import Image from 'next/image';
+import PropertyDemand from '../Shared/PropertyDemand/PropertyDemand';
 const AboutLandlord = () => {
     return (
         <div>
@@ -130,7 +131,9 @@ const AboutLandlord = () => {
             <div className='mt-24 mb-12'>
                 <div className='lg:w-[1216px] mx-auto lg:px-0 px-3'>
                     <h1 className="text-[#233244] text-3xl font-semibold font-['Inter'] leading-[38px] lg:text-left text-center">Nolan Lubin listings</h1>
-                    <div className='grid lg:grid-cols-3 grid-cols-1 lg:gap-6 gap-3 mt-12 lg:p-0 p-4 '>
+                   
+                   <PropertyDemand></PropertyDemand>
+                    {/* <div className='grid lg:grid-cols-3 grid-cols-1 lg:gap-6 gap-3 mt-12 lg:p-0 p-4 '>
                         <div className=' grid grid-cols-1 gap-x-4   bg-white rounded-[20px] rounded-tl-3xl rounded-tr-3xl border border-[#c4c6c9]/60 shadow-custom'>
                             <div >
                                 <Image src={listingImage} alt="" />
@@ -241,7 +244,7 @@ const AboutLandlord = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
