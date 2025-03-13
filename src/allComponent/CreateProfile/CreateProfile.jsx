@@ -39,7 +39,7 @@ const CreateProfile = () => {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <Input
-            className="px-3 py-1.5 rounded-md border border-gray-400 bg-white pr-10 mb-4"
+            className="px-3 py-1.5 rounded-md border text-[16px] border-gray-400 bg-white pr-10 mb-4"
             id="firstName"
             type="text"
             placeholder="First Name"
@@ -49,7 +49,7 @@ const CreateProfile = () => {
             <span className="text-red-500">{errors.firstName.message}</span>
           )}
           <Input
-            className="px-3 py-1.5 rounded-md border border-gray-400 bg-white pr-10 mb-4"
+            className="px-3 py-1.5 rounded-md text-[16px] border border-gray-400 bg-white pr-10 mb-4"
             id="lastName"
             type="text"
             placeholder="Last Name"
@@ -63,8 +63,22 @@ const CreateProfile = () => {
             Make sure this matches the name on your government ID. If you go by
             another name, you can add a preferred first name.
           </p>
+          <Input
+            className="px-3 py-1.5 rounded-md text-[16px] border border-gray-400 bg-white pr-10 mb-4"
+            id="email"
+            type="email"
+            placeholder="Email address"
+            {...register("email", { required: "Email is required" })}
+          />
+          {errors.lastName && (
+            <span className="text-red-500">{errors.lastName.message}</span>
+          )}
 
-          <div className="flex items-center justify-center bg-white rounded-md border border-gray-400 mb-4">
+          <p className="text-colorTextSecondary text-[12px] font-normal leading-[140%] mb-4">
+          We'll email you confirmations and receipts.
+          </p>
+
+          <div className="flex items-center justify-center bg-white text-[16px] rounded-md border border-gray-400 mb-4">
             <div className="shrink-0 pl-3">
               <p className="text-colorTextSecondary font-normal leading-[150%]">
                 +44 (UK)
@@ -73,6 +87,7 @@ const CreateProfile = () => {
             <div className="flex-grow">
               <Input
                 id="phoneNumber"
+               
                 type="text"
                 placeholder="Phone Number"
                 {...register("phoneNumber", {
@@ -85,6 +100,18 @@ const CreateProfile = () => {
           {errors.phoneNumber && (
             <span className="text-red-500">{errors.phoneNumber.message}</span>
           )}
+
+<div className="w-full px-10">
+      <MultipleSelector
+        defaultOptions={OPTIONS}
+        placeholder="Select frameworks you like..."
+        emptyIndicator={
+          <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+            no results found.
+          </p>
+        }
+      />
+    </div>
 
           <div className="flex-1">
             <label
