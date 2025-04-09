@@ -5,9 +5,13 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 ;
 import { Button } from "@/components/ui/button";
+import MultipleSelector, { Option  } from "@/components/extension/MutiSelector";
+
+import language from './language.json'
+import ImageUploader from "../Shared/ImageUploader/ImageUploader";
 
 const CreateProfile = () => {
-    const [imageFiles, setImageFiles] = useState(null);
+  const [imageFiles, setImageFiles] = useState(null);
   const methods = useForm();
 
   const {
@@ -31,8 +35,8 @@ const CreateProfile = () => {
       reader.readAsDataURL(file);
     }
   };
-    return (
-        <div className="m-auto  my-14 flex w-[600px] p-[40px] flex-col justify-center items-center flex-shrink-0 rounded-[16px] border border-[#EEF1F3] shadow-[0px_4px_20px_rgba(0,0,0,0.08)]">
+  return (
+    <div className="m-auto  my-14 flex lg:w-[600px] w-96 p-[40px] flex-col justify-center items-center flex-shrink-0 rounded-[16px] border border-[#EEF1F3] shadow-[0px_4px_20px_rgba(0,0,0,0.08)]">
       <h2 className="text-colorTextPrimary text-center text-[24px] font-semibold leading-[120%] mb-10">
         Complete profile
       </h2>
@@ -75,7 +79,7 @@ const CreateProfile = () => {
           )}
 
           <p className="text-colorTextSecondary text-[12px] font-normal leading-[140%] mb-4">
-          We'll email you confirmations and receipts.
+            We'll email you confirmations and receipts.
           </p>
 
           <div className="flex items-center justify-center bg-white text-[16px] rounded-md border border-gray-400 mb-4">
@@ -87,7 +91,7 @@ const CreateProfile = () => {
             <div className="flex-grow">
               <Input
                 id="phoneNumber"
-               
+
                 type="text"
                 placeholder="Phone Number"
                 {...register("phoneNumber", {
@@ -101,19 +105,32 @@ const CreateProfile = () => {
             <span className="text-red-500">{errors.phoneNumber.message}</span>
           )}
 
-<div className="w-full px-10">
-      <MultipleSelector
-        defaultOptions={OPTIONS}
-        placeholder="Select frameworks you like..."
-        emptyIndicator={
-          <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
-            no results found.
-          </p>
-        }
-      />
-    </div>
 
-          <div className="flex-1">
+          <MultipleSelector
+            className=" rounded-md mt-4 text-[16px] border border-gray-400 bg-white pr-10 mb-4"
+            defaultOptions={language}
+            placeholder="Select Languages"
+            emptyIndicator={
+              <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+                no results found.
+              </p>
+            }            
+          />
+          
+
+          <Input
+            className="px-3 py-1.5 rounded-md border text-[16px] border-gray-400 bg-white pr-10 mb-4"
+            id="address"
+            type="text"
+            placeholder="Address"
+            {...register("address", { required: "Address is required" })}
+          />
+          {errors.address && (
+            <span className="text-red-500">{errors.address.message}</span>
+          )}
+
+
+          {/* <div className="flex-1">
             <label
               className="flex h-14 w-full cursor-pointer items-center justify-center bg-[#EEF1F3] rounded-md border border-gray-400 mb-4 shadow-sm transition-all duration-100"
               htmlFor="image"
@@ -127,18 +144,25 @@ const CreateProfile = () => {
               type="file"
               onChange={(e) => handleImageChange(e)}
             />
+          </div> */}
+          <div className=" rounded-xl shadow-[0px_1px_4px_0px_rgba(16,24,40,0.10),0px_1px_4px_0px_rgba(16,24,40,0.06)] mb-4">
+          <ImageUploader
+          ></ImageUploader>
           </div>
+          
+
+          <p className="text-center  lg:px-5 px-3 mb-4"><span className="text-[#314660] text-sm font-normal  leading-tight">By selecting </span><span className="text-[#314660] text-sm font-semibold  leading-none">Agree & Continue</span><span className="text-[#314660] text-sm font-normal  leading-tight">, I agree to Verv's </span><span className="text-[#50B533] text-sm font-semibold  underline leading-none">Terms & Conditions</span><span className="text-[#314660] text-sm font-normal  leading-tight">, </span><span className="text-[#50B533] text-sm font-semibold  underline leading-none">Payment Terms</span><span className="text-[#314660] text-sm font-normal  leading-tight"> & acknowledge the </span><span className="text-[#50B533] text-sm font-semibold  underline leading-none">Privacy Policy</span><span className="text-[#314660] text-sm font-normal  leading-tight">.</span></p>
 
           <Button
             type="submit"
-            className="bg-colorButton text-black hover:text-white border border-black w-full rounded shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] text-lg font-semibold"
+            className="bg-[#50B533] hover:bg-[#FFFFFF] text-[#FFFFFF] hover:text-[#50B533]  border border-[#50B533] w-full rounded shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] text-lg font-semibold h-[56px] "
           >
             Agree & Continue
           </Button>
         </form>
       </FormProvider>
     </div>
-    );
+  );
 };
 
 export default CreateProfile;
