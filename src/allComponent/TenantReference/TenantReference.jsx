@@ -22,16 +22,11 @@ const TenantReference = () => {
         </div>
         {PageComponents.map((_, i) => (
             <div className="flex flex-col justify-start items-start gap-2">
-            <div className="justify-start text-slate-500 text-lg font-normal font-['Inter'] leading-relaxed">Steps 1 of 11</div>
-            <div className="w-[1168px] inline-flex justify-between items-start overflow-hidden">
-                <div className={`w-24 h-4 ${((i<1) || (i===1)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                <div className={`w-24 h-4 ${((i<2) || (i===2)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                <div className={`w-24 h-4 ${((i<3) || (i===3)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                <div className={`w-24 h-4 ${((i<4) || (i===4)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                <div className={`w-24 h-4 ${((i<5) || (i===5)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                <div className={`w-24 h-4 ${((i<6) || (i===5)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                <div className={`w-24 h-4 ${((i<7) || (i===7)) ?'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
-                
+            <div className="justify-start text-slate-500 text-lg font-normal font-['Inter'] leading-relaxed">Steps {i} of 11</div>
+            <div className="w-[1168px] inline-flex justify-start gap-3 items-start overflow-hidden">
+                <div className={`w-24 h-4 ${(currentPage === i) ? 'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
+                <div className={`w-24 h-4 ${(currentPage === i) ? 'bg-lime-600 ':'bg-gray-300'} rounded-[50px]`} />
+                {i}
             </div>
         </div>
           ))}

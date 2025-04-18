@@ -85,7 +85,7 @@ const PaymentForm = () => {
             placeholder="Card Number"
             register={register}
             errors={errors}
-            className="w-full "
+            className="w-full ring-0"
           />
         </div>
         {/* Card Number */}

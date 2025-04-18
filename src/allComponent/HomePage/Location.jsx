@@ -50,23 +50,81 @@
 
 // export default Location;
 
-import React from 'react';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
-import { mapApi } from '@/ApiKey/mapApi';
+// import React from 'react';
+// import { APIProvider, Map } from '@vis.gl/react-google-maps';
+// import { mapApi } from '@/ApiKey/mapApi';
+
+// const MapSection = dynamic(() => import('../components/MapSection'), {
+//     ssr: false, // Required for leaflet to work with Next.js
+//   });
+
+// const Location = () => {
+//     return (
+//         <div>
+//             {/* <APIProvider apiKey={mapApi}>
+//                 Need Google paid API key
+//                 <Map
+//                     style={{ width: '500px', height: '300px' }}
+//                     defaultCenter={{ lat: 22.54992, lng: 0 }}
+//                     defaultZoom={3}
+//                     gestureHandling={'greedy'}
+//                     disableDefaultUI={true}
+//                 />
+//             </APIProvider> */}
+//             <h1 className="text-2xl font-bold mb-4">My Map Section</h1>
+//             <MapSection />
+
+//         </div>
+//     );
+// };
+
+// export default Location;
+
+"use client"
+import React, { useEffect, useState } from 'react';
+import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
+// import { mapApi } from '@/ApiKey/mapApi';
 
 const Location = () => {
+    const [coords, setCoords] = useState(null);
+    const locationName = "Dhaka"
+
+  useEffect(() => {
+    const geocodeLocation = async () => {
+      try {
+        const response = await fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(locationName)}&key=AIzaSyCIJy_1gPANo7w8LFSuWXot4gDc-mu9Zj4`
+        );
+        const data = await response.json();
+
+        if (data.status === 'OK') {
+          const { lat, lng } = data.results[0].geometry.location;
+          setCoords({ lat, lng });
+        } else {
+          console.error('Geocoding failed:', data.status);
+        }
+      } catch (error) {
+        console.error('Error during geocoding:', error);
+      }
+    };
+
+    geocodeLocation();
+  }, [locationName]);
     return (
         <div>
-            <APIProvider apiKey={mapApi}>
-                {/* Need Google paid API key */}
-                <Map
-                    style={{ width: '500px', height: '300px' }}
-                    defaultCenter={{ lat: 22.54992, lng: 0 }}
-                    defaultZoom={3}
-                    gestureHandling={'greedy'}
-                    disableDefaultUI={true}
-                />
-            </APIProvider>
+             <APIProvider apiKey="AIzaSyCIJy_1gPANo7w8LFSuWXot4gDc-mu9Zj4">
+      {coords && (
+        <Map
+          style={{ width: '500px', height: '300px' }}
+          center={coords}
+          zoom={12}
+          gestureHandling="greedy"
+          disableDefaultUI={true}
+        >
+          <Marker position={coords} />
+        </Map>
+      )}
+    </APIProvider>
 
         </div>
     );
