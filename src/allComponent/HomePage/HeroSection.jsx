@@ -48,7 +48,7 @@ const HeroSection = () => {
                 <Input
                   type="text"
                   placeholder="Where are you looking to rent?"
-                  className="w-full p-2 border-0 shadow-none focus:border-none rounded  "
+                  className="w-full p-2 border-0 shadow-none focus:border-none rounded focus-visible:ring-0"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
